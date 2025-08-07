@@ -8,13 +8,13 @@ export default function HomePage() {
   const { addToCart } = useCart();
 
   useEffect(() => {
- axios.get(`${process.env.REACT_APP_API_BASE}/sevas`)
+ axios.get(`${process.env.REACT_APP_API_BASE}/api/sevas`)
       .then(res =>{
          setSevas(res.data)
         console.log(sevas);
         })
       .catch(err => console.error("Error fetching sevas:", err));
-  }, [sevas]);
+  }, []);
 
   const handleAddToCart = (seva) => {
     console.log("🛒 Add to cart:", seva);
