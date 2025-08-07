@@ -6,7 +6,7 @@ require('dotenv').config();
 const sevasRoutes = require('./routes/sevasRoutes');
 const usersRoutes = require('./routes/usersRoutes');
 const addressRoutes = require('./routes/addressRoutes');
-
+const orderRoutes = require('./routes/orderRoutes');
 
 
 const app = express();
@@ -19,6 +19,7 @@ app.use(express.json());
 app.use('/api/sevas', sevasRoutes);
 app.use('/api/users', usersRoutes);
 app.use('/api', addressRoutes);
+app.use('/api', orderRoutes);
 
 app.get('/', (req, res) => {
   res.send('Seva Booking Backend is running');
