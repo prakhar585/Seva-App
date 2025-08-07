@@ -1,23 +1,22 @@
 // backend/controllers/sevasController.js
-const getAllSevas = (req, res) => {
-  const dummySevas = [
-    {
-      id: 1,
-      code: "seva001",
-      title: "Morning Aarti",
-      tags: ["puja", "temple"],
-      description: "Daily morning aarti at 6AM",
-      marketPrice: 1000,
-      discountedPrice: 800,
-      start: "2025-08-01",
-      end: "2025-08-30",
-      amountRaised: 5000,
-      targetAmount: 10000,
-      media: "https://example.com/image1.jpg"
-    }
-  ];
+const sevas = require('../data/sevas');
 
-  res.json(dummySevas);
+const getAllSevas = (req, res) => {
+  res.status(200).json(sevas);
 };
 
-module.exports = { getAllSevas };
+const getSevaByCode = (req, res) => {
+  const { code } = req.params;
+  const seva = sevas.find(s => s.code === code);
+
+  if (!seva) {
+    return res.status(404).json({ message: 'Seva not found' });
+  }
+
+  res.status(200).json(seva);
+};
+
+module.exports = {
+  getAllSevas,
+  getSevaByCode
+};
